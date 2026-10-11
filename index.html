@@ -1,0 +1,1893 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="dark h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRX｜官方網站｜台灣</title>
+    <meta property="og:site_name" content="FRX 官方網站" />
+    <meta name="description" content="FRX - 探索次世代作業系統、前瞻科技架構與沈浸式數位美學。">
+    <meta property="og:title" content="FRX 官方網站">
+    <meta property="og:description" content="智領未來決策。探索次世代作業系統與科技美學。">
+    <meta property="og:image" content="https://i.ibb.co/6J4tYcTs/FRX-OS.jpg">
+    <link rel="apple-touch-icon" href="https://i.ibb.co/6J4tYcTs/FRX-OS.jpg">
+    <meta name="google-site-verification" content="_sWdj7ESWt5qdZN88RbvI-C_anFGJ_hhLBlgU2jjAEA" />
+    <link rel="icon" type="image/jpeg" href="https://i.ibb.co/6J4tYcTs/FRX-OS.jpg">   
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "FRX 官方網站",
+      "alternateName": "FRX",
+      "url": "https://frx-tau.vercel.app/"
+    }
+    </script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        frx: {
+                            black: '#030307',
+                            dark: '#070711',
+                            cyan: '#38bdf8',
+                            blue: '#60a5fa',
+                            gold: '#f59e0b',
+                            warmBg: '#050408',
+                            warmAccent: '#ffb74d'
+                        }
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 12s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'liquid-shift': 'liquidShift 18s ease infinite alternate',
+                        'menu-pop': 'menuPop 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'shimmer': 'shimmer 3s linear infinite',
+                        'gradient-flow': 'gradientFlow 6s ease infinite',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%, 100%': { opacity: 0.3, transform: 'scale(1) rotate(0deg)' },
+                            '50%': { opacity: 0.65, transform: 'scale(1.25) rotate(180deg)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-14px)' },
+                        },
+                        liquidShift: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(50px, -40px) scale(1.12)' },
+                            '66%': { transform: 'translate(-30px, 40px) scale(0.92)' },
+                            '100%': { transform: 'translate(20px, -20px) scale(1.05)' },
+                        },
+                        menuPop: {
+                            '0%': { opacity: 0, transform: 'scale(0.94) translateY(-16px)' },
+                            '100%': { opacity: 1, transform: 'scale(1) translateY(0)' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' },
+                        },
+                        gradientFlow: {
+                            '0%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                            '100%': { backgroundPosition: '0% 50%' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        html, body {
+            height: 100%;
+            background-color: #030307;
+            color: #f7f4ef;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .liquid-bg-blob {
+            position: fixed;
+            width: 750px;
+            height: 750px;
+            border-radius: 50%;
+            filter: blur(140px);
+            z-index: -1;
+            opacity: 0.45;
+            animation: liquid-shift 18s ease infinite alternate;
+            pointer-events: none;
+            mix-blend-mode: screen;
+        }
+
+        .glass-nav {
+            background: rgba(7, 7, 17, 0.65);
+            backdrop-filter: blur(40px) saturate(200%);
+            -webkit-backdrop-filter: blur(40px) saturate(200%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+        }
+
+        .glass-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%),
+                        radial-gradient(circle at top left, rgba(245, 158, 11, 0.12), transparent 60%);
+            backdrop-filter: blur(40px) saturate(200%);
+            -webkit-backdrop-filter: blur(40px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+            transition: 0.8s;
+            pointer-events: none;
+        }
+        .glass-card:hover::before {
+            left: 100%;
+        }
+
+        .glass-card-hover:hover {
+            border-color: rgba(245, 158, 11, 0.5);
+            box-shadow: 0 40px 90px rgba(0, 0, 0, 0.85), 0 0 50px rgba(245, 158, 11, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .text-gradient-white {
+            background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-gradient-animated-warm {
+            background: linear-gradient(270deg, #fef3c7, #f59e0b, #d97706, #ffb74d, #fef3c7);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientFlow 6s ease infinite;
+        }
+
+        .page-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .page-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #cursor-glow {
+            pointer-events: none;
+            position: fixed;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(245,158,11,0.12) 0%, rgba(245,158,11,0.02) 50%, rgba(0,0,0,0) 75%);
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: transform 0.08s ease-out;
+        }
+
+        .search-highlight {
+            background-color: rgba(245, 158, 11, 0.4);
+            color: #fff;
+            padding: 0 4px;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 1024px) {
+            #cursor-glow { display: none !important; }
+            .glass-card { transform: none !important; }
+        }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="selection:bg-amber-500/85 selection:text-white flex flex-col min-h-screen">
+
+    <!-- Cookie 隱私權存取同意橫幅 -->
+    <div id="cookie-consent-banner" class="fixed bottom-0 left-0 right-0 z-50 p-4 sm:p-6 bg-[#070711]/90 backdrop-blur-2xl border-t border-neutral-800/80 shadow-2xl transition-all duration-500 transform translate-y-full opacity-0">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+            <div class="flex items-start space-x-3.5">
+                <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 shrink-0 mt-0.5">
+                    <i data-lucide="cookie" class="w-5 h-5"></i>
+                </span>
+                <div class="space-y-1">
+                    <h4 class="text-sm font-bold text-white tracking-tight">Cookie 與隱私權通知</h4>
+                    <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed max-w-3xl">
+                        我們使用 Cookie 來優化您的瀏覽體驗、分析網站流量並提供個人化內容。繼續瀏覽本網站即表示您同意我們的 <a href="javascript:void(0)" onclick="switchPage('legal', true); hideCookieBanner();" class="text-amber-400 hover:underline">隱私權政策與 Cookie 規範</a>。
+                    </p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3 w-full lg:w-auto justify-end shrink-0 pt-2 lg:pt-0">
+                <button onclick="acceptCookie('essential')" class="px-4 py-2.5 bg-neutral-800 hover:bg-neutral-700 text-neutral-200 text-xs font-medium rounded-xl border border-neutral-700/50 transition duration-200 cursor-pointer">
+                    僅接受必要 Cookie
+                </button>
+                <button onclick="acceptCookie('all')" class="px-5 py-2.5 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white text-xs font-semibold rounded-xl shadow-lg transition duration-200 cursor-pointer">
+                    接受所有 Cookie
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 意見回報與加入公司申請彈窗 Modal -->
+    <div id="feedback-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="glass-card w-full max-w-lg rounded-3xl p-6 sm:p-8 border border-amber-500/40 relative shadow-2xl animate-menu-pop">
+            <button onclick="toggleFeedbackModal()" class="absolute top-6 right-6 text-neutral-400 hover:text-white">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            
+            <div class="flex items-center space-x-2.5 mb-6">
+                <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400">
+                    <i data-lucide="message-square-plus" class="w-4 h-4"></i>
+                </span>
+                <h3 class="text-xl font-bold text-white tracking-tight">意見回報與加入公司申請</h3>
+            </div>
+
+            <form id="feedback-form" onsubmit="submitFeedback(event)" class="space-y-4">
+                <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                        <label class="block text-xs font-mono text-neutral-400 uppercase">登入者身分 (Google 帳號)</label>
+                        <button type="button" onclick="handleLogout()" class="text-[11px] font-mono text-red-400 hover:underline flex items-center gap-1">
+                            <i data-lucide="log-out" class="w-3 h-3"></i> 登出帳號
+                        </button>
+                    </div>
+                    <div class="flex items-center space-x-3 bg-black/40 border border-white/10 rounded-xl p-3">
+                        <img id="fb-user-avatar" src="https://placehold.co/40x40/111/fff?text=U" class="w-8 h-8 rounded-full object-cover border border-amber-500/30" alt="Avatar">
+                        <div class="overflow-hidden flex-grow">
+                            <div id="fb-user-name" class="text-xs font-semibold text-white truncate">使用者名稱</div>
+                            <div id="fb-user-email" class="text-[11px] font-mono text-amber-400/90 truncate">email@gmail.com</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-mono text-neutral-400 uppercase mb-1.5">提交類型</label>
+                    <select id="fb-type" class="w-full bg-black/40 border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500 transition">
+                        <option value="bug">問題回報 (Bug Report)</option>
+                        <option value="feature">功能建議與優化 (Feature Request)</option>
+                        <option value="join_company">🚀 加入 FRX 公司申請 (Join Application)</option>
+                        <option value="other">其他一般意見 (General Feedback)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-mono text-neutral-400 uppercase mb-1.5">詳細內容說明</label>
+                    <textarea id="fb-content" rows="4" required placeholder="若為意見回報請描述問題；若為加入公司申請請簡述您的專長與個人經歷..." class="w-full bg-black/40 border border-white/15 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-amber-500 transition resize-none"></textarea>
+                </div>
+
+                <div class="pt-2 flex justify-between items-center">
+                    <span id="daily-limit-hint" class="text-[11px] font-mono text-amber-400/80">每 24 小時最多可提交 2 則</span>
+                    <div class="flex space-x-3">
+                        <button type="button" onclick="toggleFeedbackModal()" class="px-5 py-2.5 bg-neutral-800 hover:bg-neutral-700 text-neutral-300 text-xs font-medium rounded-xl transition">
+                            取消
+                        </button>
+                        <button type="submit" id="fb-submit-btn" class="px-6 py-2.5 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white text-xs font-semibold rounded-xl shadow-lg transition">
+                            送出回報
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- FRX OS 暫緩公告懸浮彈窗 -->
+    <div id="frx-announcement-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md transition-opacity duration-300">
+        <div class="relative w-full max-w-md bg-[#0c0d14]/90 border border-neutral-700/60 rounded-2xl p-6 sm:p-7 shadow-2xl backdrop-blur-xl text-neutral-200">
+            <div class="flex items-center space-x-2.5 mb-4">
+                <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 font-mono text-xs">
+                    <i data-lucide="bell" class="w-4 h-4"></i>
+                </span>
+                <span class="text-xs font-mono tracking-widest text-neutral-400 uppercase">官方重要公告</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3 tracking-tight">
+                FRX 官網大更新 計劃調整通知
+            </h3>
+            <div class="space-y-3 text-sm text-neutral-300 leading-relaxed font-normal">
+                <p>
+                    近期官網流量較高 為避免影響新版本官網品質，<strong class="text-neutral-100 font-semibold">原預計2026.10/11進行的官網大更新將暫緩實施</strong>[cite: 3]。
+                </p>
+                <p class="text-neutral-400 text-xs">
+                    預計於<span class="text-amber-400/90 font-mono font-medium">2026.10/20</span>進行更新，感謝您的支持與理解。預計更新至官網版本：2.0.0
+                </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-neutral-800/80 flex justify-end">
+                <button onclick="closeAnnouncementModal()" class="px-5 py-2 bg-neutral-800 hover:bg-neutral-700 text-neutral-200 text-xs font-medium rounded-xl border border-neutral-700/50 transition duration-200 cursor-pointer">
+                    我知道了
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="liquid-bg-blob top-10 left-10 bg-amber-600/25"></div>
+    <div class="liquid-bg-blob bottom-1/4 right-10 bg-orange-600/20" style="animation-delay: -6s;"></div>
+    <div class="liquid-bg-blob top-1/2 left-1/3 bg-purple-900/20" style="animation-delay: -12s;"></div>
+
+    <div id="cursor-glow" class="hidden lg:block"></div>
+
+    <header class="sticky top-0 left-0 w-full z-40 glass-nav transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 text-xs font-normal">
+                <a href="javascript:void(0)" onclick="switchPage('home', true)" class="flex items-center space-x-3 text-white hover:opacity-85 transition group">
+                    <img src="https://i.ibb.co/6J4tYcTs/FRX-OS.jpg" alt="FRX Logo" class="h-8 w-8 rounded-xl object-cover border border-amber-500/40 shadow-lg group-hover:border-amber-400 group-hover:scale-105 transition duration-300" onerror="this.src='https://placehold.co/100x100/111/fff?text=FRX'">
+                    <div class="flex flex-col">
+                        <span class="font-bold text-sm tracking-tight text-white group-hover:text-amber-300 transition">FRX（台灣）</span>
+                        <span class="text-[9px] font-mono text-neutral-400 tracking-wider uppercase">數據驅動，智領未來決策｜1.102.29</span>
+                    </div>
+                </a>
+
+                <nav class="hidden lg:flex items-center space-x-6 text-neutral-300 font-medium text-xs">
+                    <button onclick="switchPage('home', true)" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-home">首頁 Overview</button>
+                    <button onclick="switchPage('latest-news', true)" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-latest-news">最新動態</button>
+                    
+                    <div class="relative group py-1">
+                        <button class="nav-btn hover:text-white transition flex items-center space-x-1 cursor-pointer">
+                            <span>關於與技術</span>
+                            <i data-lucide="chevron-down" class="w-3 h-3 group-hover:rotate-180 transition duration-300"></i>
+                        </button>
+                        <div class="absolute top-full left-0 w-48 pt-2 hidden group-hover:block z-50">
+                            <div class="glass-card rounded-2xl p-2.5 shadow-2xl border border-amber-500/30 flex flex-col space-y-1 text-left">
+                                <button onclick="switchPage('history', true)" class="w-full text-left px-3 py-2 rounded-xl hover:bg-white/15 text-neutral-300 hover:text-white transition">發展歷程</button>
+                                <button onclick="switchPage('concept', true)" class="w-full text-left px-3 py-2 rounded-xl hover:bg-white/15 text-neutral-300 hover:text-white transition">概念介紹</button>
+                                <button onclick="switchPage('technology', true)" class="w-full text-left px-3 py-2 rounded-xl hover:bg-white/15 text-neutral-300 hover:text-white transition">核心技術</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="switchPage('faq', true)" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-faq">常見問題</button>
+                    <button onclick="switchPage('discord', true)" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-discord">Discord</button>
+                    <button onclick="switchPage('fr100', true)" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-fr100">FR 100</button>
+                    <button onclick="switchPage('legal', true)" class="nav-btn hover:text-white transition py-1 cursor-pointer text-amber-400" id="nav-legal">法律與條款</button>
+                </nav>
+
+                <div class="flex items-center space-x-3 text-neutral-300">
+                    <button onclick="toggleSearchModal()" class="hover:text-white transition p-2 rounded-full hover:bg-white/10" aria-label="搜尋">
+                        <i data-lucide="search" class="w-4 h-4"></i>
+                    </button>
+
+                    <!-- 桌機版 Google 登入 / 意見回報 按鈕 -->
+                    <div id="auth-container-desktop" class="hidden lg:block">
+                        <button onclick="handleGoogleLogin()" id="login-btn-dt" class="bg-white/10 hover:bg-white/20 text-white text-xs font-medium px-4 py-2 rounded-full transition border border-white/20 flex items-center space-x-2 backdrop-blur-md">
+                            <i data-lucide="log-in" class="w-3.5 h-3.5 text-amber-400"></i>
+                            <span>Google 登入</span>
+                        </button>
+                        <div id="user-profile-widget-dt" class="hidden items-center space-x-2">
+                            <button onclick="toggleFeedbackModal()" class="bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white text-xs font-semibold px-4 py-2 rounded-full transition shadow-lg flex items-center space-x-1.5">
+                                <i data-lucide="message-square-plus" class="w-3.5 h-3.5"></i>
+                                <span>意見回報 / 加入公司</span>
+                            </button>
+                            <button onclick="handleLogout()" title="登出" class="p-2 rounded-full bg-white/10 hover:bg-red-500/20 hover:text-red-400 transition text-neutral-300">
+                                <i data-lucide="log-out" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button onclick="toggleMobileMenu()" class="lg:hidden text-neutral-300 hover:text-white p-1" aria-label="手機選單">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 手機版全螢幕選單 -->
+    <div id="mobile-menu" class="fixed inset-0 z-50 bg-[#030307]/95 backdrop-blur-3xl hidden flex-col justify-between px-8 py-10 text-lg font-semibold space-y-4 text-neutral-300 overflow-y-auto animate-menu-pop">
+        <div>
+            <div class="flex items-center justify-between pb-6 mb-4 border-b border-white/10">
+                <div class="text-xs font-mono text-amber-400 uppercase">FRX 選單目錄</div>
+                <button onclick="toggleMobileMenu()" class="text-neutral-400 hover:text-white">
+                    <i data-lucide="x" class="w-7 h-7"></i>
+                </button>
+            </div>
+            
+            <div class="flex flex-col space-y-3">
+                <button onclick="switchPage('home', true); toggleMobileMenu();" class="text-left hover:text-white transition py-1">01. 首頁 Overview</button>
+                <button onclick="switchPage('latest-news', true); toggleMobileMenu();" class="text-left hover:text-white transition py-1">02. FRX 最新動態</button>
+                <button onclick="switchPage('history', true); toggleMobileMenu();" class="text-left hover:text-white transition py-1">03. 發展歷程</button>
+                <button onclick="switchPage('concept', true); toggleMobileMenu();" class="text-left hover:text-white transition py-1">04. 概念介紹</button>
+                <button onclick="switchPage('technology', true); toggleMobileMenu();" class="text-left hover:text-white transition py-1">05. 核心技術</button>
+                <button onclick="switchPage('faq', true); toggleMobileMenu();" class="text-left hover:text-white transition py-1">06. 常見問題</button>
+                <button onclick="switchPage('discord', true); toggleMobileMenu();" class="text-left hover:text-white transition py-1">07. Discord 社群</button>
+                <button onclick="switchPage('fr100', true); toggleMobileMenu();" class="text-left hover:text-white transition py-1">08. FR 100 點擊戰</button>
+                <button onclick="switchPage('legal', true); toggleMobileMenu();" class="text-left hover:text-white transition py-1 text-amber-400">09. 隱私權與條款聲明</button>
+                <button onclick="switchPage('community', true); toggleMobileMenu();" class="text-left hover:text-white transition py-1">10. 社群平台</button>
+            </div>
+        </div>
+
+        <!-- 手機選單底部登入/回報控制項 -->
+        <div id="auth-container-mobile" class="pt-6 border-t border-white/10">
+            <button onclick="handleGoogleLogin()" id="login-btn-mb" class="w-full py-3.5 bg-white/10 hover:bg-white/20 text-white text-sm font-semibold rounded-2xl border border-white/20 flex items-center justify-center space-x-2 transition">
+                <i data-lucide="log-in" class="w-4 h-4 text-amber-400"></i>
+                <span>Google 帳號登入</span>
+            </button>
+            <div id="user-profile-widget-mb" class="hidden flex-col space-y-3">
+                <button onclick="toggleFeedbackModal(); toggleMobileMenu();" class="w-full py-3.5 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white text-sm font-semibold rounded-2xl shadow-xl flex items-center justify-center space-x-2 transition">
+                    <i data-lucide="message-square-plus" class="w-4 h-4"></i>
+                    <span>意見回報與加入公司申請</span>
+                </button>
+                <button onclick="handleLogout()" class="w-full py-2.5 bg-neutral-900 hover:bg-red-500/20 text-red-400 border border-red-500/30 text-xs font-mono rounded-xl flex items-center justify-center space-x-1.5 transition">
+                    <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
+                    <span>登出當前帳號</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <main class="flex-grow">
+
+        <!-- 首頁 -->
+        <div id="page-home" class="page-content active" data-page-title="首頁 Overview" data-page-desc="FRX 科技，構築次世代決策。結合數據驅動與前瞻科技架構...">
+            <section class="relative min-h-[calc(100vh-4rem)] flex flex-col justify-center items-center px-4 sm:px-8 py-16 overflow-hidden border-b border-amber-500/10">
+                <canvas id="homeUniverseCanvas" class="absolute inset-0 w-full h-full pointer-events-none opacity-40"></canvas>
+                
+                <div class="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center my-auto">
+                    <div class="lg:col-span-7 text-left space-y-6">
+                        <div class="inline-flex items-center space-x-2.5 bg-amber-500/10 border border-amber-500/30 backdrop-blur-3xl rounded-full px-4 py-1.5 text-xs text-amber-300">
+                            <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                            <span class="font-mono tracking-widest uppercase">F R X &bull; 核心系統與未來願景</span>
+                        </div>
+
+                        <h1 class="text-5xl sm:text-7xl xl:text-[88px] font-extrabold tracking-tight text-gradient-white leading-[1.05]">
+                            FRX 科技 ，<br><span class="text-gradient-animated-warm">構築次世代決策。</span>
+                        </h1>
+
+                        <p class="text-base sm:text-lg text-neutral-300 max-w-xl font-normal leading-relaxed">
+                            結合數據驅動與前瞻科技架構，FRX 以極致通透的次世代美學打造未來的數位生態系統。
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row items-center gap-4 pt-4">
+                            <button onclick="switchPage('latest-news', true)" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white font-medium rounded-2xl transition transform hover:scale-105 duration-300 shadow-xl flex items-center justify-center space-x-2 text-xs">
+                                <span>探索最新動態</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                            <button onclick="switchPage('technology', true)" class="w-full sm:w-auto px-8 py-4 bg-white/5 hover:bg-white/15 text-neutral-200 border border-amber-500/30 font-medium rounded-2xl transition transform hover:scale-105 duration-300 flex items-center justify-center space-x-2 backdrop-blur-3xl text-xs">
+                                <span>了解核心技術</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 w-full">
+                        <div class="glass-card rounded-3xl p-6 sm:p-8 border border-amber-500/30 shadow-2xl relative">
+                            <div class="flex items-center justify-between mb-6 border-b border-white/10 pb-4">
+                                <span class="text-xs font-mono text-amber-400 uppercase tracking-widest flex items-center gap-2">
+                                    <i data-lucide="clock" class="w-4 h-4"></i> 官方線上發表會倒數
+                                </span>
+                                <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded font-mono">2030.01.01 18:00</span>
+                            </div>
+
+                            <div id="countdown-timer" class="grid grid-cols-4 gap-2 sm:gap-3 mb-8 font-mono">
+                                <div class="bg-black/40 rounded-2xl p-3 text-center border border-white/10">
+                                    <div id="cd-days" class="text-2xl sm:text-3xl font-extrabold text-white">000</div>
+                                    <div class="text-[9px] sm:text-[10px] text-neutral-400 mt-1 uppercase">天 Days</div>
+                                </div>
+                                <div class="bg-black/40 rounded-2xl p-3 text-center border border-white/10">
+                                    <div id="cd-hours" class="text-2xl sm:text-3xl font-extrabold text-white">00</div>
+                                    <div class="text-[9px] sm:text-[10px] text-neutral-400 mt-1 uppercase">時 Hours</div>
+                                </div>
+                                <div class="bg-black/40 rounded-2xl p-3 text-center border border-white/10">
+                                    <div id="cd-minutes" class="text-2xl sm:text-3xl font-extrabold text-white">00</div>
+                                    <div class="text-[9px] sm:text-[10px] text-neutral-400 mt-1 uppercase">分 Mins</div>
+                                </div>
+                                <div class="bg-black/40 rounded-2xl p-3 text-center border border-white/10">
+                                    <div id="cd-seconds" class="text-2xl sm:text-3xl font-extrabold text-amber-400">00</div>
+                                    <div class="text-[9px] sm:text-[10px] text-neutral-400 mt-1 uppercase">秒 Secs</div>
+                                </div>
+                            </div>
+
+                            <a href="https://youtube.com/live/jA7CKwfmcrU?feature=share" target="_blank" class="w-full inline-flex items-center justify-center space-x-2 py-3.5 bg-red-600/90 hover:bg-red-500 text-white font-semibold rounded-xl transition duration-300 text-xs shadow-lg">
+                                <i data-lucide="youtube" class="w-4 h-4"></i>
+                                <span>前往線上發表會直播</span>
+                                <i data-lucide="external-link" class="w-3.5 h-3.5 opacity-70"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative z-10 w-full max-w-7xl mx-auto mt-16 grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <a href="javascript:void(0)" onclick="switchPage('latest-news', true)" class="lg:col-span-7 block group relative rounded-3xl overflow-hidden glass-card transition duration-500 hover:border-amber-500/60 h-64">
+                        <img src="https://i.ibb.co/jkwgnhjR/IMG-2024.jpg" alt="FRX Banner" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700 opacity-75">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#030307]/95 via-[#030307]/40 to-transparent flex items-end justify-between p-6">
+                            <div class="text-left space-y-1">
+                                <span class="text-xs font-mono text-amber-400 block uppercase tracking-wider">最新動態</span>
+                                <span class="text-lg sm:text-xl font-semibold text-white group-hover:text-amber-300 transition flex items-center gap-2">
+                                    探索 2030 跨世代安卓系統 <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <div class="lg:col-span-5 glass-card rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-amber-500/30 shadow-2xl">
+                        <div class="text-left space-y-2">
+                            <div class="text-xs font-mono text-amber-400 uppercase tracking-wider">2030 核心願景</div>
+                            <div class="text-lg font-semibold text-white leading-snug">整合高效能運算與模組化架構，打造更穩固的數位基礎設施。</div>
+                            <div class="text-xs text-neutral-400">用穩健的智慧科技，重塑產業秩序。</div>
+                        </div>
+                        <div class="flex items-center justify-around text-center font-mono pt-6 border-t border-white/10">
+                            <div>
+                                <div class="text-xl sm:text-2xl font-bold text-white">100 Trillion</div>
+                                <div class="text-[10px] text-neutral-400 mt-0.5">每秒運算目標</div>
+                            </div>
+                            <div class="h-8 w-px bg-white/20"></div>
+                            <div>
+                                <div class="text-xl sm:text-2xl font-bold text-amber-400">99.999%</div>
+                                <div class="text-[10px] text-neutral-400 mt-0.5">系統可用性</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-24 px-4 sm:px-8 max-w-7xl mx-auto">
+                <div class="mb-12 text-left">
+                    <span class="text-xs font-mono text-amber-400 tracking-widest uppercase mb-2 block">FRX INNOVATION</span>
+                    <h2 class="text-3xl sm:text-5xl font-bold tracking-tight text-white">科技與美學的穩健突破。</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="md:col-span-2 glass-card glass-card-hover rounded-3xl p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden group">
+                        <div class="relative z-10">
+                            <span class="text-xs font-mono text-amber-400">系統研發藍圖</span>
+                            <div class="text-4xl sm:text-6xl font-bold text-white my-3 font-mono tracking-tighter">OS Beta</div>
+                            <h3 class="text-xl sm:text-3xl font-semibold text-white mb-2">次世代作業系統預告 預計使用Android AOSP 封閉自研系統開發</h3>
+                            <p class="text-neutral-300 max-w-lg text-sm sm:text-base leading-relaxed">
+                                預計於 2030 年 1 月 1 日下午 18:00 舉辦線上發表會，展現跨平台高度整合架構。
+                            </p>
+                        </div>
+                        <div class="mt-8 relative h-56 rounded-2xl overflow-hidden border border-white/15">
+                            <img src="https://i.ibb.co/ZpF6ktCX/IMG-2025.jpg" class="w-full h-full object-cover opacity-85 group-hover:scale-105 transition duration-700" alt="Topology">
+                        </div>
+                    </div>
+
+                    <div class="glass-card glass-card-hover rounded-3xl p-8 flex flex-col justify-between relative overflow-hidden">
+                        <div>
+                            <span class="text-xs font-mono text-amber-400">核心架構</span>
+                            <div class="text-3xl sm:text-5xl font-bold text-gradient-warm my-3 font-mono">系統普及</div>
+                            <h3 class="text-xl font-semibold text-white mb-2">系統正式版</h3>
+                            <p class="text-neutral-300 text-sm leading-relaxed">預計於 2030 至 2033 年間全球正式上架。</p>
+                        </div>
+                        <div class="mt-6 pt-5 border-t border-white/15 flex items-center justify-between text-xs font-mono text-neutral-400">
+                            <span>推展時程</span>
+                            <span class="text-white">2030-2033</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card glass-card-hover rounded-3xl p-8 flex flex-col justify-between relative overflow-hidden">
+                        <div>
+                            <span class="text-xs font-mono text-amber-400">硬體展望</span>
+                            <div class="text-4xl sm:text-6xl font-bold text-white my-3 font-mono">2035</div>
+                            <h3 class="text-xl font-semibold text-white mb-2">前瞻行動裝置</h3>
+                            <p class="text-neutral-300 text-sm leading-relaxed">規劃於 2035 年進行全球線上發表。</p>
+                        </div>
+                        <div class="mt-6 pt-5 border-t border-white/15 flex items-center justify-between text-xs font-mono text-neutral-400">
+                            <span>預計年份</span>
+                            <span class="text-amber-400">2035</span>
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-2 glass-card glass-card-hover rounded-3xl p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden group">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
+                            <div>
+                                <span class="text-xs font-mono text-amber-400">系統互動體驗</span>
+                                <h3 class="text-2xl sm:text-3xl font-semibold text-white">直覺空間感知與互動介面</h3>
+                            </div>
+                            <span class="px-3 py-1 bg-white/10 text-amber-300 border border-amber-500/30 rounded-full font-mono text-xs backdrop-blur-3xl">
+                                2035 願景
+                            </span>
+                        </div>
+                        <p class="text-neutral-300 text-sm sm:text-base mb-6 max-w-xl leading-relaxed">
+                            結合環境感知神經網絡，為未來的智慧裝置帶來流暢且自然的互動體驗。
+                        </p>
+                        <div class="grid grid-cols-3 gap-4 border-t border-white/15 pt-5 text-center">
+                            <div>
+                                <div class="text-sm sm:text-lg font-bold text-white font-mono">Beta 亮相</div>
+                                <div class="text-[11px] text-neutral-400 mt-0.5">2030.01.01 18:00</div>
+                            </div>
+                            <div>
+                                <div class="text-sm sm:text-lg font-bold text-white font-mono">正式普及</div>
+                                <div class="text-[11px] text-neutral-400 mt-0.5">2030 - 2033</div>
+                            </div>
+                            <div>
+                                <div class="text-sm sm:text-lg font-bold text-white font-mono">前瞻裝置</div>
+                                <div class="text-[11px] text-neutral-400 mt-0.5">2035</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 最新動態 -->
+        <div id="page-latest-news" class="page-content" data-page-title="FRX 最新動態" data-page-desc="動態資訊與核心研發，見證 FRX 在系統架構與工藝設計上的每一步進展...">
+            <section class="max-w-6xl mx-auto px-4 sm:px-8 py-16">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-xs font-mono text-amber-400 tracking-widest uppercase mb-2 block">[ 動態資訊與核心研發 ]</span>
+                    <h1 class="text-4xl sm:text-6xl font-bold text-white tracking-tight mb-4">FRX 最新動態</h1>
+                    <p class="text-neutral-300 text-base sm:text-xl font-normal leading-relaxed">
+                        見證 FRX 在系統架構與工藝設計上的每一步扎實進展。
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+                    <div class="lg:col-span-2 glass-card rounded-3xl p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden">
+                        <div class="relative z-10 space-y-3">
+                            <span class="px-3 py-1 bg-white/10 text-amber-300 border border-amber-500/30 rounded-full font-mono text-xs inline-block backdrop-blur-3xl">焦點頭條</span>
+                            <h2 class="text-2xl sm:text-4xl font-bold text-white leading-snug">2030 跨世代作業系統與光學架構發布預告</h2>
+                            <p class="text-neutral-300 text-sm sm:text-base leading-relaxed">
+                                我們正持續推進 OS Beta 的核心開發。透過微距光學與精密結構的融合，未來的數位互動將更具真實感與流暢度。
+                            </p>
+                        </div>
+                        <div class="mt-8 rounded-2xl overflow-hidden border border-white/15 h-64">
+                            <img src="https://i.ibb.co/fYj11pDT/IMG-1642.jpg" alt="FRX Optical Architecture" class="w-full h-full object-cover opacity-90">
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-3xl p-8 flex flex-col justify-between space-y-6">
+                        <div class="space-y-2">
+                            <span class="text-xs font-mono text-amber-400 uppercase">研發進度追蹤</span>
+                            <h3 class="text-xl font-bold text-white">模組化晶片與系統整合</h3>
+                            <p class="text-neutral-300 text-sm leading-relaxed">
+                                為了確保 2030 年的順利亮相，研發團隊目前已完成超過 85% 的底層核心架構壓力測試。
+                            </p>
+                        </div>
+                        <div class="space-y-3 pt-4 border-t border-white/15 text-xs font-mono">
+                            <div class="flex justify-between text-neutral-300">
+                                <span>軟體架構穩定度</span>
+                                <span class="text-amber-400">99.4%</span>
+                            </div>
+                            <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-amber-500 h-full w-[99.4%] shadow-sm"></div>
+                            </div>
+                            <div class="flex justify-between text-neutral-300 pt-2">
+                                <span>硬體相容性測試</span>
+                                <span class="text-amber-300">92.8%</span>
+                            </div>
+                            <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-amber-400 h-full w-[92.8%] shadow-sm"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="relative rounded-3xl overflow-hidden glass-card glass-card-hover group h-[420px]">
+                        <img src="https://i.ibb.co/HDT8S7j6/photo-output.png" alt="Lens Macro" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700 opacity-80">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#030307]/95 via-[#030307]/30 to-transparent p-8 flex flex-col justify-end">
+                            <span class="text-xs font-mono text-amber-400 mb-1">2035 概念藍圖</span>
+                            <h3 class="text-2xl font-bold text-white mb-2">重新定義行動裝置的邊界</h3>
+                            <p class="text-neutral-300 text-sm leading-relaxed">探索未來的全螢幕手勢與空間感知技術。</p>
+                        </div>
+                    </div>
+
+                    <div class="relative rounded-3xl overflow-hidden glass-card glass-card-hover group h-[420px]">
+                        <img src="https://i.ibb.co/bg5C2CWf/photo-output.png" alt="Titanium Frame" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700 opacity-80">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#030307]/95 via-[#030307]/30 to-transparent p-8 flex flex-col justify-end">
+                            <span class="text-xs font-mono text-amber-400 mb-1">OS Beta 發表</span>
+                            <h3 class="text-2xl font-bold text-white mb-2">2030 年 1 月 1 日 18:00</h3>
+                            <p class="text-neutral-300 text-sm leading-relaxed">工藝與科技的結合，即將在線上發表會全面揭曉。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Discord -->
+        <div id="page-discord" class="page-content" data-page-title="Discord 社群" data-page-desc="FRX 社群中心，交流技術、分享見解，與全球開發者一同前行...">
+            <section class="max-w-5xl mx-auto px-4 sm:px-8 py-20">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                    <span class="text-xs font-mono text-amber-400 uppercase tracking-widest">[ FRX Discord ]</span>
+                    <h1 class="text-4xl sm:text-6xl font-bold text-white">FRX 社群中心</h1>
+                    <p class="text-neutral-300 text-base">
+                        交流技術、分享見解，與全球開發者一同前行。
+                    </p>
+                </div>
+
+                <div class="space-y-12">
+                    <div class="glass-card rounded-3xl overflow-hidden grid grid-cols-1 lg:grid-cols-2 gap-8 items-center p-8 shadow-2xl">
+                        <div class="h-64 sm:h-72 rounded-2xl overflow-hidden border border-white/15">
+                            <img src="https://i.ibb.co/CpWY0wBn/photo-output.jpg" alt="OS Interface" class="w-full h-full object-cover opacity-90">
+                        </div>
+                        <div class="space-y-5">
+                            <span class="text-xs font-mono text-amber-400">COMMUNITY SYSTEM</span>
+                            <h2 class="text-2xl sm:text-3xl font-bold text-white">完善的社群互動與交流空間</h2>
+                            <p class="text-neutral-300 text-sm leading-relaxed">
+                                無論是技術討論、概念交流還是專案合作，我們隨時歡迎您的加入。
+                            </p>
+                            <div>
+                                <a href="https://discord.gg/evNfSAPAXT" target="_blank" class="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white font-medium rounded-full transition text-xs shadow-xl transform hover:scale-105 duration-300">
+                                    <span>立即前往 Discord</span>
+                                    <span>&rarr;</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 發展歷程 -->
+        <div id="page-history" class="page-content" data-page-title="發展歷程" data-page-desc="FRX 的發展歷程，從創立至今，我們一步步實踐對科技與美學的承諾...">
+            <section class="max-w-4xl mx-auto px-4 sm:px-8 py-20">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                    <span class="text-xs font-mono text-amber-400 uppercase tracking-widest">[ FRX HISTORY ]</span>
+                    <h1 class="text-4xl sm:text-6xl font-bold text-white">FRX 的發展歷程</h1>
+                    <p class="text-neutral-300 text-base">
+                        從創立至今，我們一步步實踐對科技與美學的承諾。
+                    </p>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="glass-card rounded-3xl p-8 grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                        <div class="font-mono text-2xl font-bold text-amber-400">2025</div>
+                        <div class="md:col-span-2 space-y-1.5">
+                            <h3 class="text-lg font-bold text-white">FR 品牌創立</h3>
+                            <p class="text-neutral-300 text-sm leading-relaxed">
+                                FRX 科技公司之前身，早期以網頁製作與設計為主軸，奠定扎實的數位工藝基礎。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-3xl p-8 grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                        <div class="font-mono text-2xl font-bold text-white">2026</div>
+                        <div class="md:col-span-2 space-y-1.5">
+                            <h3 class="text-lg font-bold text-white">FR 科技公司重要成就</h3>
+                            <p class="text-neutral-300 text-sm leading-relaxed">
+                                截至 2026 年 8 月 1 日，已累計製作超過 200+ 個網站以及數十個應用軟體。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-3xl p-8 grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                        <div class="font-mono text-2xl font-bold text-amber-300">2026.9/1</div>
+                        <div class="md:col-span-2 space-y-1.5">
+                            <h3 class="text-lg font-bold text-white">FRX 正式成立</h3>
+                            <p class="text-neutral-300 text-sm leading-relaxed">
+                                整合團隊與資源，迎向下一個階段的數位時代。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 概念介紹 -->
+        <div id="page-concept" class="page-content" data-page-title="概念介紹" data-page-desc="科技，本該自然。我們正站在下一個時代的交界點，重新思考人與數位世界的連結方式...">
+            <section class="max-w-4xl mx-auto px-4 sm:px-8 py-20">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                    <span class="text-xs font-mono text-amber-400 tracking-widest uppercase block">[ FUTURE VISION ]</span>
+                    <h1 class="text-4xl sm:text-6xl font-bold text-white tracking-tight leading-tight">
+                        科技，本該自然。
+                    </h1>
+                    <p class="text-neutral-300 text-base sm:text-lg font-normal leading-relaxed">
+                        我們正站在下一個時代的交界點，重新思考人與數位世界的連結方式。
+                    </p>
+                </div>
+
+                <div class="space-y-8 text-neutral-300">
+                    <div class="glass-card rounded-3xl p-8 space-y-3">
+                        <h3 class="text-xl font-bold text-white tracking-tight">無縫的空間感知</h3>
+                        <p class="text-sm sm:text-base leading-relaxed text-neutral-300">
+                            未來的裝置不再受限於螢幕尺寸。透過高精度的環境感知與神經網絡運算，科技將自然融入生活空間之中。
+                        </p>
+                    </div>
+
+                    <div class="glass-card rounded-3xl p-8 space-y-3">
+                        <h3 class="text-xl font-bold text-white tracking-tight">直覺的互動美學</h3>
+                        <p class="text-sm sm:text-base leading-relaxed text-neutral-300">
+                            我們致力於將複雜的後端架構與演算法化繁為簡，讓每一次的互動都如同呼吸般流暢直覺。
+                        </p>
+                    </div>
+
+                    <div class="glass-card rounded-3xl p-8 space-y-3">
+                        <h3 class="text-xl font-bold text-white tracking-tight">永續與智慧的共生</h3>
+                        <p class="text-sm sm:text-base leading-relaxed text-neutral-300">
+                            FRX 堅持在追求極致效能的同時，兼顧環保與永續發展，讓先進科技與環境達到完美的動態平衡。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-20 text-center border-t border-white/15 pt-12">
+                    <p class="text-xs font-mono text-neutral-400 uppercase tracking-widest mb-1">FRX ARCHITECTURE</p>
+                    <h4 class="text-lg sm:text-xl font-bold text-white">探索無限可能，見證未來降臨。</h4>
+                </div>
+            </section>
+        </div>
+
+        <!-- 常見問題 -->
+        <div id="page-faq" class="page-content" data-page-title="常見問題" data-page-desc="常見問題，關於 FRX 系統、未來產品發布與服務的各項疑問解答...">
+            <section class="max-w-3xl mx-auto px-4 sm:px-8 py-20">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                    <span class="text-xs font-mono text-amber-400 tracking-widest uppercase block">[ SUPPORT & FAQ ]</span>
+                    <h1 class="text-4xl sm:text-6xl font-bold text-white tracking-tight leading-tight">
+                        常見問題。
+                    </h1>
+                    <p class="text-neutral-300 text-base sm:text-lg font-normal leading-relaxed">
+                        關於 FRX 系統、未來產品發布與服務的各項疑問解答。
+                    </p>
+                </div>
+
+                <div class="space-y-5 text-neutral-300">
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 space-y-2.5 transition hover:border-amber-500/50">
+                        <h3 class="text-lg font-bold text-white tracking-tight">Q1: FRX OS 預計何時正式推出？</h3>
+                        <p class="text-sm sm:text-base leading-relaxed text-neutral-300">
+                            FRX OS 測試版 (Beta) 預計於 2030 年 1 月 1 日下午 18:00 全球線上發表。正式版則預計在 2030 至 2033 年間陸續推出。
+                        </p>
+                    </div>
+
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 space-y-2.5 transition hover:border-amber-500/50">
+                        <h3 class="text-lg font-bold text-white tracking-tight">Q2: 如何參與 FRX 的最新產品發表與預購？</h3>
+                        <p class="text-sm sm:text-base leading-relaxed text-neutral-300">
+                            您可隨時關注網站上的「最新動態」頁面。產品進入公開階段時，我們將於官網開放專屬通道。
+                        </p>
+                    </div>
+
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 space-y-2.5 transition hover:border-amber-500/50">
+                        <h3 class="text-lg font-bold text-white tracking-tight">Q3: 概念產品與硬體裝置何時會正式上市？</h3>
+                        <p class="text-sm sm:text-base leading-relaxed text-neutral-300">
+                            依目前研發藍圖，全新超科技行動裝置預計於 2035 年首次亮相。具體規格與時程請以最終公佈為準。
+                        </p>
+                    </div>
+
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 space-y-2.5 transition hover:border-amber-500/50">
+                        <h3 class="text-lg font-bold text-white tracking-tight">Q4: 網站時程是否為絕對確切日期？</h3>
+                        <p class="text-sm sm:text-base leading-relaxed text-neutral-300">
+                            本網站部分時間規劃為前瞻預測藍圖，詳細進展請持續關注「最新動態」公告。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-20 text-center border-t border-white/15 pt-12">
+                    <p class="text-xs font-mono text-neutral-400 uppercase tracking-widest mb-1">STILL HAVE QUESTIONS?</p>
+                    <h4 class="text-lg sm:text-xl font-bold text-white">我們隨時準備好為您解答。</h4>
+                </div>
+            </section>
+        </div>
+
+        <!-- 核心技術 -->
+        <div id="page-technology" class="page-content" data-page-title="核心技術" data-page-desc="突破極限的核心技術。從晶片架構到空間感測，我們以深厚的技術底蘊...">
+            <section class="max-w-4xl mx-auto px-4 sm:px-8 py-20">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                    <span class="text-xs font-mono text-amber-400 tracking-widest uppercase block">[ CORE TECHNOLOGY ]</span>
+                    <h1 class="text-4xl sm:text-6xl font-bold text-white tracking-tight leading-tight">
+                        突破極限的核心技術。
+                    </h1>
+                    <p class="text-neutral-300 text-base sm:text-lg font-normal leading-relaxed">
+                        從晶片架構到空間感測，我們以深厚的技術底蘊，為未來的智慧生活奠定堅實基石。
+                    </p>
+                </div>
+
+                <div class="space-y-8 text-neutral-300">
+                    <div class="glass-card rounded-3xl p-8 space-y-3">
+                        <h3 class="text-xl font-bold text-white tracking-tight">FRX 專屬處理器架構</h3>
+                        <p class="text-sm sm:text-base leading-relaxed text-neutral-300">
+                            採用極致精密的架構設計，在確保極低功耗的同時提供強悍算力，實現流暢的實時運算體驗。
+                        </p>
+                    </div>
+
+                    <div class="glass-card rounded-3xl p-8 space-y-3">
+                        <h3 class="text-xl font-bold text-white tracking-tight">高擬真微距光學架構</h3>
+                        <p class="text-sm sm:text-base leading-relaxed text-neutral-300">
+                            透過高解析度光學呈現出卓越畫質，完美消弭虛擬與現實的界線。
+                        </p>
+                    </div>
+
+                    <div class="glass-card rounded-3xl p-8 space-y-3">
+                        <h3 class="text-xl font-bold text-white tracking-tight">無縫環境感測網絡</h3>
+                        <p class="text-sm sm:text-base leading-relaxed text-neutral-300">
+                            整合多重高精度感測器與手勢追蹤演算法，精確捕捉互動意圖。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-20 text-center border-t border-white/15 pt-12">
+                    <p class="text-xs font-mono text-amber-400 uppercase tracking-widest mb-1">FRX INNOVATION</p>
+                    <h4 class="text-lg sm:text-xl font-bold text-white">以科技工藝，見證未來新視界。</h4>
+                </div>
+            </section>
+        </div>
+
+        <!-- 隱私權政策、使用條款與法律聲明 (#legal) -->
+        <div id="page-legal" class="page-content" data-page-title="隱私權與條款聲明" data-page-desc="FRX 官方隱私權政策、使用條款與法律聲明規範...">
+            <section class="max-w-4xl mx-auto px-4 sm:px-8 py-20 space-y-16">
+                <div class="text-center max-w-3xl mx-auto space-y-3">
+                    <span class="text-xs font-mono text-amber-400 tracking-widest uppercase block">[ LEGAL & POLICIES ]</span>
+                    <h1 class="text-4xl sm:text-6xl font-bold text-white tracking-tight leading-tight">
+                        隱私權與條款聲明
+                    </h1>
+                    <p class="text-neutral-300 text-base sm:text-lg font-normal leading-relaxed">
+                        FRX Corporation（以下簡稱「本公司」）極度重視您的隱私與權益。請詳細閱讀以下規範。
+                    </p>
+                    <div class="text-xs font-mono text-neutral-400 pt-2">
+                        官方聯繫信箱：<a href="mailto:FRX.2027.tw@gmail.com" class="text-amber-400 hover:underline">FRX.2027.tw@gmail.com</a>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-3xl p-8 sm:p-10 space-y-6">
+                    <div class="border-b border-white/10 pb-4">
+                        <span class="text-xs font-mono text-amber-400 uppercase tracking-wider">Section 01</span>
+                        <h2 class="text-2xl font-bold text-white mt-1">隱私權政策 (Privacy Policy)</h2>
+                    </div>
+                    <div class="space-y-4 text-sm sm:text-base text-neutral-300 leading-relaxed">
+                        <p><strong>一、 資料蒐集之目的與類別：</strong>本公司為了提供次世代系統服務、線上發表會資訊、社群互動及全球點擊戰等功能，可能會蒐集您的瀏覽紀錄、點擊數據與互動喜好。所有數據僅作為優化使用者體驗與系統穩定度之用。</p>
+                        <p><strong>二、 資料保護與安全：</strong>我們採用業界標準的加密技術與安全架構（包含 Firebase 雲端資料庫安全防護），嚴格保護您的個人資料與互動數據，防止未經授權的存取、揭露或修改。</p>
+                        <p><strong>三、 Cookie 與追蹤技術：</strong>本網站可能使用 Cookie 以提升網站瀏覽體驗。您可以透過瀏覽器設定隨時拒絕或刪除 Cookie。</p>
+                        <p><strong>四、 政策更新：</strong>本隱私權政策將隨技術發展與法規需求不定期修訂。若有任何疑問，歡迎隨時透過 <a href="mailto:FRX.2027.tw@gmail.com" class="text-amber-400 hover:underline">FRX.2027.tw@gmail.com</a> 與我們聯繫。</p>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-3xl p-8 sm:p-10 space-y-6">
+                    <div class="border-b border-white/10 pb-4">
+                        <span class="text-xs font-mono text-amber-400 uppercase tracking-wider">Section 02</span>
+                        <h2 class="text-2xl font-bold text-white mt-1">使用條款 (Terms of Use)</h2>
+                    </div>
+                    <div class="space-y-4 text-sm sm:text-base text-neutral-300 leading-relaxed">
+                        <p><strong>一、 服務同意：</strong>當您造訪或使用 FRX 官方網站（frx-tau.vercel.app）即表示您同意並接受本使用條款之所有規範。</p>
+                        <p><strong>二、 用戶行為規範：</strong>使用者不得利用本網站從事任何違法行為、企圖破壞伺服器資料庫（如點擊戰異常灌水、惡意攻擊網站等），亦不得侵害本公司或其他用戶之合法權益。</p>
+                        <p><strong>三、 智慧財產權：</strong>本網站所呈現之所有商標、介面設計、概念藍圖、圖片、程式碼及文字內容，均屬於 FRX Corporation 所有，未經授權嚴禁私自轉載、重製或作商業營利使用。</p>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-3xl p-8 sm:p-10 space-y-6">
+                    <div class="border-b border-white/10 pb-4">
+                        <span class="text-xs font-mono text-amber-400 uppercase tracking-wider">Section 03</span>
+                        <h2 class="text-2xl font-bold text-white mt-1">法律聲明 (Legal Disclaimer)</h2>
+                    </div>
+                    <div class="space-y-4 text-sm sm:text-base text-neutral-300 leading-relaxed">
+                        <p><strong>一、 前瞻性聲明免責條款：</strong>本網站所揭露之部分產品藍圖、作業系統規格、發表會時間（如 2030 年 OS Beta 發表）以及未來硬體願景，均為前瞻性概念示意，不構成最終量產上市之法律承諾。本公司保留隨時修改、調整內容之權利。</p>
+                        <p><strong>二、 責任限制：</strong>對於因使用或無法使用本網站服務而產生的任何直接、間接、偶發或衍生性損害，FRX Corporation 概不負任何賠償責任。</p>
+                        <p><strong>三、 官方聯絡窗口：</strong>若有任何法律授權、合作洽談或合規詢問，請逕行發信至官方指定信箱：<a href="mailto:FRX.2027.tw@gmail.com" class="text-amber-400 hover:underline">FRX.2027.tw@gmail.com</a>。</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- FR 100 點擊戰 -->
+        <div id="page-fr100" class="page-content relative overflow-hidden" data-page-title="FR 100 點擊戰" data-page-desc="全球即時點擊戰，與全球玩家同步連線，點擊畫面累積世界總次數..." style="min-height: 80vh;">
+            <style>
+                #page-fr100 .game-container-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100%;
+                    min-height: 50vh;
+                    position: relative;
+                    user-select: none;
+                    cursor: pointer;
+                }
+
+                #page-fr100 .glass-card-game {
+                    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.04) 100%);
+                    backdrop-filter: blur(60px) saturate(240%);
+                    -webkit-backdrop-filter: blur(60px) saturate(240%);
+                    border: 1px solid rgba(255, 183, 77, 0.4);
+                    border-radius: 36px;
+                    padding: 55px 45px;
+                    width: 100%;
+                    max-width: 460px;
+                    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8), inset 0 2px 4px rgba(255, 255, 255, 0.35);
+                    text-align: center;
+                    pointer-events: none;
+                }
+
+                #page-fr100 h2.game-title {
+                    font-size: 0.85rem;
+                    letter-spacing: 2px;
+                    text-transform: uppercase;
+                    opacity: 0.75;
+                    margin-bottom: 16px;
+                    color: #fff;
+                }
+
+                #page-fr100 .counter-number {
+                    font-size: 5.5rem;
+                    font-weight: 800;
+                    text-shadow: 0 4px 25px rgba(0, 0, 0, 0.7);
+                    margin-bottom: 20px;
+                    letter-spacing: 1px;
+                    transition: transform 0.12s ease;
+                    color: #fff;
+                }
+
+                #page-fr100 .counter-number.bounce {
+                    transform: scale(1.15);
+                }
+
+                #page-fr100 .hint {
+                    font-size: 0.85rem;
+                    opacity: 0.7;
+                    letter-spacing: 0.5px;
+                    color: #ffe0b2;
+                }
+
+                .floating-plus {
+                    position: fixed;
+                    font-size: 1.8rem;
+                    font-weight: 800;
+                    color: #ffb74d;
+                    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
+                    pointer-events: none;
+                    z-index: 9999;
+                    animation: floatUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+                }
+
+                @keyframes floatUp {
+                    0% { opacity: 1; transform: translateY(0) scale(0.9); }
+                    100% { opacity: 0; transform: translateY(-90px) scale(1.4); }
+                }
+            </style>
+
+            <section class="max-w-6xl mx-auto px-4 sm:px-8 py-16">
+                <div class="text-center max-w-3xl mx-auto mb-10">
+                    <span class="text-xs font-mono text-amber-400 tracking-widest uppercase mb-2 block">[ GLOBAL LIVE BATTLE ]</span>
+                    <h1 class="text-4xl sm:text-6xl font-bold text-white tracking-tight mb-3">全球即時點擊戰</h1>
+                    <p class="text-neutral-300 text-base">
+                        與全球玩家同步連線，點擊畫面累積世界總次數。
+                    </p>
+                </div>
+
+                <div class="game-container-wrapper" id="click-game-area">
+                    <div class="glass-card-game">
+                        <h2 class="game-title">全球點擊戰</h2>
+                        <div class="counter-number" id="counter">0</div>
+                        <div class="hint">點擊畫面任意處增加次數</div>
+                    </div>
+                </div>
+            </section>
+
+            <script type="module">
+                import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+                import { getDatabase, ref, onValue, runTransaction } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+                const clickGameFirebaseConfig = {
+                  apiKey: "AIzaSyCEWTtMvjz8RuCxFUuB8N1nqpkJuia9RM4",
+                  authDomain: "project-1817650898210314266.firebaseapp.com",
+                  projectId: "project-1817650898210314266",
+                  storageBucket: "project-1817650898210314266.firebasestorage.app",
+                  messagingSenderId: "412972763732",
+                  appId: "1:412972763732:web:ca171434077b29cfdffbc1",
+                  measurementId: "G-FL2QM3WSXZ",
+                  databaseURL: "https://project-1817650898210314266-default-rtdb.asia-southeast1.firebasedatabase.app/"
+                };
+
+                const gameApp = initializeApp(clickGameFirebaseConfig, "clickGameApp");
+                const gameDb = getDatabase(gameApp);
+
+                const totalClicksRef = ref(gameDb, 'clicks');
+                const counterSpan = document.getElementById("counter");
+
+                onValue(totalClicksRef, (snapshot) => {
+                    const val = snapshot.val();
+                    if (counterSpan) {
+                        counterSpan.innerText = (val !== null && typeof val === 'number') ? val.toLocaleString() : 0;
+                    }
+                });
+
+                const pageFr100Element = document.getElementById("page-fr100");
+                if (pageFr100Element) {
+                    pageFr100Element.addEventListener("click", (e) => {
+                        runTransaction(totalClicksRef, (currentClicks) => (currentClicks || 0) + 1);
+
+                        if (counterSpan) {
+                            counterSpan.classList.add("bounce");
+                            setTimeout(() => {
+                                counterSpan.classList.remove("bounce");
+                            }, 130);
+                        }
+
+                        const plusEl = document.createElement("div");
+                        plusEl.className = "floating-plus";
+                        plusEl.innerText = "+1";
+                        
+                        plusEl.style.left = `${e.clientX - 10}px`;
+                        plusEl.style.top = `${e.clientY - 20}px`;
+
+                        document.body.appendChild(plusEl);
+
+                        setTimeout(() => {
+                            plusEl.remove();
+                        }, 900);
+                    });
+                }
+            </script>
+        </div>
+
+        <!-- 社群平台 / 聯絡 -->
+        <div id="page-community" class="page-content" data-page-title="社群平台" data-page-desc="連結未來，與世界同行。加入 FRX 的數位生態圈，與全球創作者...">
+            <section class="max-w-4xl mx-auto px-4 sm:px-8 py-20">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                    <span class="text-xs font-mono text-amber-400 tracking-widest uppercase block">[ COMMUNITY & ECOSYSTEM ]</span>
+                    <h1 class="text-4xl sm:text-6xl font-bold text-white tracking-tight leading-tight">
+                        連結未來，與世界同行。
+                    </h1>
+                    <p class="text-neutral-300 text-base sm:text-lg font-normal leading-relaxed">
+                        加入 FRX 的數位生態圈，與全球創作者、開發者與核心團隊一同塑造下一個世代。
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                    <div class="glass-card rounded-3xl p-8 flex flex-col justify-between space-y-5 hover:border-amber-500/60 transition">
+                        <div class="space-y-2">
+                            <span class="text-xs font-mono text-amber-400 uppercase tracking-wider block">PUBLIC COMMUNITY</span>
+                            <h3 class="text-xl font-bold text-white tracking-tight">FRX 公開交流社群</h3>
+                            <p class="text-sm text-neutral-300 leading-relaxed">
+                                專屬於所有科技愛好者與創作者的開放空間。在這裡分享想法、參與討論，並掌握最新動態。
+                            </p>
+                        </div>
+                        <a href="https://discord.gg/evNfSAPAXT" target="_blank" class="inline-flex justify-center items-center py-3 px-6 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white font-medium rounded-full transition text-xs shadow-xl transform hover:scale-105 duration-300">
+                            加入公開 Discord
+                        </a>
+                    </div>
+
+                    <div class="glass-card rounded-3xl p-8 flex flex-col justify-between space-y-5 hover:border-amber-500/60 transition">
+                        <div class="space-y-2">
+                            <span class="text-xs font-mono text-amber-300 uppercase tracking-wider block">VIDEO CHANNEL</span>
+                            <h3 class="text-xl font-bold text-white tracking-tight">官方 YouTube 頻道</h3>
+                            <p class="text-sm text-neutral-300 leading-relaxed">
+                                觀賞最新的產品概念影片、技術發表會與深度幕後花絮，用視覺見證未來的降臨。
+                            </p>
+                        </div>
+                        <a href="https://youtube.com/@frx2027?si=UxOXmSIm-6ReU-o_" target="_blank" class="inline-flex justify-center items-center py-3 px-6 bg-white hover:bg-neutral-200 text-neutral-900 font-medium rounded-full transition text-xs shadow-xl transform hover:scale-105 duration-300">
+                            訂閱 YouTube 頻道
+                        </a>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-3xl p-6 sm:p-8 bg-[#080812]/50 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+                    <div class="space-y-1 text-center sm:text-left">
+                        <span class="text-xs font-mono text-neutral-400 uppercase tracking-wider block">INTERNAL ACCESS</span>
+                        <h4 class="text-base font-bold text-white">FRX 內部專用群組</h4>
+                        <p class="text-xs text-neutral-300">僅限內部工程師可進入 非內部工程師請進入「FRX公開交流社群」。</p>
+                    </div>
+                    <a href="https://discord.gg/deRyAaHAXb" target="_blank" class="py-2.5 px-5 bg-white/10 hover:bg-white/20 text-neutral-200 hover:text-white font-medium rounded-full transition text-xs font-mono border border-white/20">
+                        FRX 工程師群組登入
+                    </a>
+                </div>
+
+                <div class="mt-20 text-center border-t border-white/15 pt-12">
+                    <p class="text-xs font-mono text-amber-400 uppercase tracking-widest mb-1">FRX NETWORK</p>
+                    <h4 class="text-lg sm:text-xl font-bold text-white">期待在群組中看見您的身影。</h4>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <footer class="bg-[#020205] border-t border-white/15 text-neutral-400 text-xs py-14 px-4 sm:px-8">
+        <div class="max-w-6xl mx-auto space-y-10">
+            <div class="text-center pb-2">
+                <a href="https://frx-2.vercel.app/" target="_blank" class="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white font-medium rounded-full transition transform hover:scale-105 duration-300 shadow-lg text-xs">
+                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                    <span>測試版網站</span>
+                </a>
+            </div>
+
+            <div class="border-b border-white/15 pb-6 text-neutral-400 space-y-1.5 leading-relaxed">
+                <p>1. 本網站由 FRX 官方網站管理部門管理更新。</p>
+                <p>2. FRX Corporation 保留更改本網站所有內容之權利。</p>
+                <p class="text-neutral-300">3. 網站內部分產品藍圖、圖片與預計時程為前瞻概念示意，非最終量產實品。</p>
+                <p class="text-amber-400">4. 官方聯絡信箱：FRX.2027.tw@gmail.com</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+                <div>
+                    <h4 class="font-semibold text-white mb-3">核心產品</h4>
+                    <ul class="space-y-2">
+                        <li><a href="javascript:void(0)" onclick="switchPage('latest-news', true)" class="hover:text-amber-400 transition">FRX 最新動態</a></li>
+                        <li><a href="javascript:void(0)" onclick="switchPage('discord', true)" class="hover:text-amber-400 transition">Discord 社群</a></li>
+                        <li><a href="javascript:void(0)" onclick="switchPage('history', true)" class="hover:text-amber-400 transition">發展歷程</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-3">開發與技術</h4>
+                    <ul class="space-y-2">
+                        <li><a href="javascript:void(0)" onclick="switchPage('concept', true)" class="hover:text-amber-400 transition">概念介紹</a></li>
+                        <li><a href="javascript:void(0)" onclick="switchPage('technology', true)" class="hover:text-amber-400 transition">核心技術</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-3">常見問題</h4>
+                    <ul class="space-y-2">
+                        <li><a href="javascript:void(0)" onclick="switchPage('faq', true)" class="hover:text-amber-400 transition">常見問題</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-3">法律與合規</h4>
+                    <ul class="space-y-2">
+                        <li><a href="javascript:void(0)" onclick="switchPage('legal', true)" class="hover:text-amber-400 transition">隱私權與條款聲明</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-3">概念項目</h4>
+                    <ul class="space-y-2">
+                        <li><a href="javascript:void(0)" onclick="switchPage('fr100', true)" class="hover:text-amber-400 transition">FR 100 點擊戰</a></li>
+                        <li><a href="javascript:void(0)" onclick="switchPage('community', true)" class="hover:text-amber-400 transition">社群平台</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-6 border-t border-white/15 flex flex-col sm:flex-row justify-between items-center text-neutral-400 gap-4">
+                <div>Copyright &copy; 2027 FRX Corporation. 保留一切權利。 </div>
+                
+                <div class="flex items-center space-x-6 sm:ml-12">
+                    <span>網站總瀏覽次數: <strong id="site-total-views" class="text-neutral-200">--</strong></span>
+                </div>
+
+                <div class="flex space-x-6">
+                    <a href="javascript:void(0)" onclick="switchPage('legal', true)" class="hover:text-white transition">隱私權政策</a>
+                    <a href="javascript:void(0)" onclick="switchPage('legal', true)" class="hover:text-white transition">使用條款</a>
+                    <a href="javascript:void(0)" onclick="switchPage('legal', true)" class="hover:text-white transition">法律聲明</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK 與 登入/回報邏輯模組 -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, onValue, runTransaction, set, push, get, query, orderByChild, equalTo } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+        import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDn2PYXAwtP4gh9tgkyQqFAjU08vMpdXCI",
+            authDomain: "frx0-52985.firebaseapp.com",
+            projectId: "frx0-52985",
+            storageBucket: "frx0-52985.firebasestorage.app",
+            messagingSenderId: "682767913443",
+            appId: "1:682767913443:web:f041178be356ad8922d0d6",
+            measurementId: "G-5LHFFE9T2M",
+            databaseURL: "https://frx0-52985-default-rtdb.asia-southeast1.firebasedatabase.app/"
+        };
+
+        const app = initializeApp(firebaseConfig, "mainStatsApp");
+        const db = getDatabase(app);
+        const auth = getAuth(app);
+        const googleProvider = new GoogleAuthProvider();
+
+        googleProvider.setCustomParameters({
+            prompt: 'select_account'
+        });
+
+        const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1558839342837801040/l3kXoYkSvIwKmE5ut6l445bWKJrfZJzwEifoC6Z7xThLY6ozyiursHaR45vdzI52pJh_";
+
+        // Google 登入 (停留在當前頁面，不強迫跳回官網首頁)
+        window.handleGoogleLogin = function() {
+            signInWithPopup(auth, googleProvider)
+                .then((result) => {
+                    console.log("登入成功:", result.user.email);
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        toggleMobileMenu();
+                    }
+                })
+                .catch((error) => {
+                    console.error("登入失敗:", error);
+                    alert("Google 登入失敗或已取消作業。");
+                });
+        };
+
+        // 登出帳號
+        window.handleLogout = function() {
+            signOut(auth).then(() => {
+                console.log("已成功登出");
+                const feedbackModal = document.getElementById('feedback-modal');
+                if (feedbackModal && !feedbackModal.classList.contains('hidden')) {
+                    toggleFeedbackModal();
+                }
+            }).catch((error) => {
+                console.error("登出失敗", error);
+            });
+        };
+
+        // 監聽登入狀態改變
+        onAuthStateChanged(auth, (user) => {
+            const loginBtnDt = document.getElementById('login-btn-dt');
+            const userWidgetDt = document.getElementById('user-profile-widget-dt');
+            const loginBtnMb = document.getElementById('login-btn-mb');
+            const userWidgetMb = document.getElementById('user-profile-widget-mb');
+
+            const avatarEl = document.getElementById('fb-user-avatar');
+            const nameEl = document.getElementById('fb-user-name');
+            const emailEl = document.getElementById('fb-user-email');
+
+            if (user) {
+                if (loginBtnDt) loginBtnDt.classList.add('hidden');
+                if (userWidgetDt) { userWidgetDt.classList.remove('hidden'); userWidgetDt.classList.add('flex'); }
+
+                if (loginBtnMb) loginBtnMb.classList.add('hidden');
+                if (userWidgetMb) { userWidgetMb.classList.remove('hidden'); userWidgetMb.classList.add('flex'); }
+
+                if (avatarEl) avatarEl.src = user.photoURL || 'https://placehold.co/40x40/111/fff?text=U';
+                if (nameEl) nameEl.innerText = user.displayName || 'FRX 用戶';
+                if (emailEl) emailEl.innerText = user.email || '';
+            } else {
+                if (loginBtnDt) loginBtnDt.classList.remove('hidden');
+                if (userWidgetDt) { userWidgetDt.classList.add('hidden'); userWidgetDt.classList.remove('flex'); }
+
+                if (loginBtnMb) loginBtnMb.classList.remove('hidden');
+                if (userWidgetMb) { userWidgetMb.classList.add('hidden'); userWidgetMb.classList.remove('flex'); }
+            }
+        });
+
+        // 意見回報與加入公司申請送出邏輯
+        window.submitFeedback = async function(e) {
+            e.preventDefault();
+            const user = auth.currentUser;
+            if (!user) {
+                alert("請先完成 Google 帳號登入。");
+                return;
+            }
+
+            const type = document.getElementById('fb-type').value;
+            const content = document.getElementById('fb-content').value;
+            const submitBtn = document.getElementById('fb-submit-btn');
+
+            submitBtn.innerText = "檢查權限中...";
+            submitBtn.disabled = true;
+
+            try {
+                const feedbacksRef = ref(db, 'feedbacks');
+                const userQuery = query(feedbacksRef, orderByChild('uid'), equalTo(user.uid));
+                const snapshot = await get(userQuery);
+                
+                if (snapshot.exists()) {
+                    let recentCount = 0;
+                    const now = new Date().getTime();
+                    const oneDayMs = 24 * 60 * 60 * 1000;
+
+                    snapshot.forEach((childSnapshot) => {
+                        const item = childSnapshot.val();
+                        if (item.timestamp) {
+                            const itemTime = new Date(item.timestamp).getTime();
+                            if (now - itemTime < oneDayMs) {
+                                recentCount++;
+                            }
+                        }
+                    });
+
+                    if (recentCount >= 2) {
+                        alert("提交失敗：您的帳號在 24 小時內最多只能提交 2 則回報或申請，請稍後再試！");
+                        submitBtn.innerText = "送出回報";
+                        submitBtn.disabled = false;
+                        return;
+                    }
+                }
+            } catch (err) {
+                console.warn("頻率限制檢查略過:", err);
+            }
+
+            submitBtn.innerText = "傳送中...";
+
+            let ipInfo = { ip: "未知", city: "未知", region: "未知", country: "未知" };
+            try {
+                const res = await fetch('https://ipapi.co/json/');
+                if (res.ok) {
+                    const data = await res.json();
+                    ipInfo = {
+                        ip: data.ip || "未知",
+                        city: data.city || "",
+                        region: data.region || "",
+                        country: data.country_name || ""
+                    };
+                }
+            } catch (err) {
+                console.warn("IP 資訊擷取略過:", err);
+            }
+
+            const userAgent = navigator.userAgent;
+            const platform = navigator.platform || "未知平台";
+            const screenRes = `${window.screen.width}x${window.screen.height}`;
+
+            const feedbackData = {
+                uid: user.uid,
+                name: user.displayName || '匿名用戶',
+                email: user.email,
+                type: type,
+                content: content,
+                ip: ipInfo.ip,
+                location: `${ipInfo.city}, ${ipInfo.region},${ipInfo.country}`,
+                userAgent: userAgent,
+                platform: platform,
+                screen: screenRes,
+                timestamp: new Date().toISOString()
+            };
+
+            try {
+                const feedbacksRef = ref(db, 'feedbacks');
+                const newFeedbackRef = push(feedbacksRef);
+                await set(newFeedbackRef, feedbackData);
+            } catch (err) {
+                console.error("處理失敗:", err);
+            }
+
+            const typeLabels = {
+                bug: '系統錯誤 / 回報問題',
+                feature: '功能建議與優化',
+                join_company: '加入 FRX 公司申請',
+                other: '其他一般意見'
+            };
+
+            const discordPayload = {
+                embeds: [{
+                    title: type === 'join_company' ? "🚀 收到新的 FRX 加入公司申請" : "📬 收到新的 FRX 意見回報",
+                    color: type === 'join_company' ? 16766720 : 16102467,
+                    fields: [
+                        { name: "👤 申請/回報者名稱", value: feedbackData.name, inline: true },
+                        { name: "📧 Gmail 帳號", value: feedbackData.email, inline: true },
+                        { name: "🏷️ 提交類型", value: typeLabels[type] || type, inline: false },
+                        { name: "💬 詳細內容", value: feedbackData.content, inline: false },
+                        { name: "🌐 網路 IP", value: feedbackData.ip, inline: true },
+                        { name: "📍 地理位置", value: feedbackData.location, inline: true },
+                        { name: "💻 裝置與解析度", value: `${platform} /${screenRes}`, inline: false },
+                        { name: "🔍 裝置 User-Agent", value: `\`\`\`${userAgent}\`\`\``, inline: false }
+                    ],
+                    timestamp: feedbackData.timestamp
+                }]
+            };
+
+            try {
+                await fetch(DISCORD_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(discordPayload)
+                });
+            } catch (err) {
+                console.error("發送失敗:", err);
+            }
+            alert("送出成功！我們已收到您的回報或申請，感謝您對 FRX 的支持。");
+            document.getElementById('feedback-form').reset();
+            toggleFeedbackModal();
+
+            submitBtn.innerText = "送出回報";
+            submitBtn.disabled = false;
+        };
+
+        const totalClicksRef = ref(db, 'clicks');
+        const counterSpan = document.getElementById("counter");
+
+        onValue(totalClicksRef, (snapshot) => {
+            const val = snapshot.val();
+            if (counterSpan) {
+                counterSpan.innerText = (val !== null && typeof val === 'number') ? val.toLocaleString() : 0;
+            }
+        });
+
+        const pageFr100Element = document.getElementById("page-fr100");
+        if (pageFr100Element) {
+            pageFr100Element.addEventListener("click", (e) => {
+                runTransaction(totalClicksRef, (currentClicks) => (currentClicks || 0) + 1);
+
+                if (counterSpan) {
+                    counterSpan.classList.add("bounce");
+                    setTimeout(() => {
+                        counterSpan.classList.remove("bounce");
+                    }, 130);
+                }
+
+                const plusEl = document.createElement("div");
+                plusEl.className = "floating-plus";
+                plusEl.innerText = "+1";
+                plusEl.style.left = `${e.clientX - 10}px`;
+                plusEl.style.top = `${e.clientY - 20}px`;
+                document.body.appendChild(plusEl);
+
+                setTimeout(() => {
+                    plusEl.remove();
+                }, 900);
+            });
+        }
+
+        const totalViewsRef = ref(db, 'stats/total_views');
+        const totalViewsEl = document.getElementById('site-total-views');
+        runTransaction(totalViewsRef, (currentViews) => (currentViews || 0) + 1);
+        onValue(totalViewsRef, (snapshot) => {
+            const views = snapshot.val();
+            if (totalViewsEl) {
+                totalViewsEl.innerText = (views !== null && typeof views === 'number') ? views.toLocaleString() : '0';
+            }
+        });
+    </script>
+
+    <!-- 站內搜尋 Modal -->
+    <div id="search-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-3xl hidden items-start justify-center pt-20 px-4">
+        <div class="glass-card w-full max-w-2xl rounded-3xl p-6 sm:p-8 border border-amber-500/50 relative shadow-2xl animate-menu-pop flex flex-col max-h-[85vh]">
+            <button onclick="toggleSearchModal()" class="absolute top-6 right-6 text-neutral-400 hover:text-white">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <div class="flex items-center space-x-3 border-b border-white/20 pb-4">
+                <i data-lucide="search" class="w-5 h-5 text-amber-400"></i>
+                <input type="text" id="site-search-input" placeholder="搜尋官方網站內容 ..." class="bg-transparent border-none text-white focus:outline-none w-full text-base sm:text-lg font-medium" autofocus>
+            </div>
+            
+            <div id="search-results-container" class="mt-4 overflow-y-auto space-y-3 no-scrollbar flex-grow pr-1" style="max-height: 50vh;">
+                <div class="text-xs font-mono text-neutral-400 py-2">熱門搜尋建議</div>
+                <div class="flex flex-wrap gap-2 pb-2">
+                    <button onclick="executeQuickSearch('隱私權政策')" class="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-xs text-neutral-300 transition">隱私權政策</button>
+                    <button onclick="executeQuickSearch('使用條款')" class="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-xs text-neutral-300 transition">使用條款</button>
+                    <button onclick="executeQuickSearch('法律聲明')" class="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-xs text-neutral-300 transition">法律聲明</button>
+                    <button onclick="executeQuickSearch('最新動態')" class="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-xs text-neutral-300 transition">FRX 最新動態</button>
+                    <button onclick="executeQuickSearch('點擊戰')" class="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-xs text-neutral-300 transition">FR 100 點擊戰</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleFeedbackModal() {
+            const modal = document.getElementById('feedback-modal');
+            modal.classList.toggle('hidden');
+            modal.classList.toggle('flex');
+            if (!modal.classList.contains('hidden')) {
+                gsap.fromTo(modal.querySelector('.glass-card'), { scale: 0.9, opacity: 0, y: -20 }, { scale: 1, opacity: 1, y: 0, duration: 0.4, ease: "power3.out" });
+            }
+        }
+
+        function checkCookieConsent() {
+            const consent = localStorage.getItem('frx_cookie_consent');
+            if (!consent) {
+                const banner = document.getElementById('cookie-consent-banner');
+                if (banner) {
+                    setTimeout(() => {
+                        banner.classList.remove('translate-y-full', 'opacity-0');
+                    }, 800);
+                }
+            }
+        }
+
+        function acceptCookie(type) {
+            localStorage.setItem('frx_cookie_consent', type);
+            hideCookieBanner();
+        }
+
+        function hideCookieBanner() {
+            const banner = document.getElementById('cookie-consent-banner');
+            if (banner) {
+                banner.classList.add('translate-y-full', 'opacity-0');
+            }
+        }
+
+        function closeAnnouncementModal() {
+            const modal = document.getElementById('frx-announcement-modal');
+            if (modal) {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 300);
+            }
+        }
+
+        const isMobileDevice = () => window.innerWidth <= 1024 || 'ontouchstart' in window;
+
+        const glow = document.getElementById('cursor-glow');
+        window.addEventListener('mousemove', (e) => {
+            if (!isMobileDevice() && glow) {
+                glow.style.left = e.clientX + 'px';
+                glow.style.top = e.clientY + 'px';
+            }
+        });
+
+        const searchIndex = [
+            { pageId: 'home', title: '首頁 Overview', snippet: 'FRX 科技，構築次世代決策。結合數據驅動與前瞻科技架構，2030年1月1日下午18:00線上發表會。' },
+            { pageId: 'legal', title: '隱私權政策', snippet: 'FRX Corporation 官方隱私權與資料保護政策，聯絡信箱 FRX.2027.tw@gmail.com。' },
+            { pageId: 'legal', title: '使用條款', snippet: '使用 FRX 官方網站之用戶行為規範、智慧財產權與服務同意條款。' },
+            { pageId: 'legal', title: '法律聲明', snippet: '前瞻性聲明免責條款與官方聯絡窗口資訊。' },
+            { pageId: 'latest-news', title: 'FRX 最新動態', snippet: '2030 跨世代作業系統與光學架構發布預告，模組化晶片與系統整合。' },
+            { pageId: 'discord', title: 'Discord 社群中心', snippet: '完善的社群互動與交流空間，技術討論、概念交流與專案合作。' },
+            { pageId: 'history', title: '發展歷程 (2025 - 2026)', snippet: 'FR 品牌創立、2026年製作超過200+個網站與應用軟體、2026年9月1日 FRX 正式成立。' },
+            { pageId: 'concept', title: '概念介紹與未來願景', snippet: '無縫的空間感知、直覺的互動美學、永續與智慧的共生。' },
+            { pageId: 'faq', title: '常見問題 FAQ', snippet: 'FRX OS 預計何時正式推出？如何參與最新產品發表與預購？' },
+            { pageId: 'technology', title: '核心技術 Matrix', snippet: 'FRX 專屬處理器架構、高擬真微距光學架構、無縫環境感測網絡。' },
+            { pageId: 'fr100', title: 'FR 100 全球即時點擊戰', snippet: '與全球玩家同步連線，點擊畫面任意處增加次數，即時互動遊戲。' },
+            { pageId: 'community', title: '社群平台與聯絡', snippet: 'FRX 公開交流社群 Discord、官方 YouTube 頻道、FRX 工程師內部群組。' }
+        ];
+
+        const searchInputEl = document.getElementById('site-search-input');
+        const searchResultsContainer = document.getElementById('search-results-container');
+
+        if (searchInputEl) {
+            searchInputEl.addEventListener('input', function(e) {
+                const keyword = searchInputEl.value.trim().toLowerCase();
+                
+                if (keyword === '67') {
+                    window.open('https://youtube.com/@frx2027?si=DcRq1jh_R54ZZYuh', '_blank');
+                    toggleSearchModal();
+                    searchInputEl.value = '';
+                    return;
+                }
+
+                if (keyword === '888') {
+                    window.open('https://frxweb.vercel.app/', '_blank');
+                    toggleSearchModal();
+                    searchInputEl.value = '';
+                    return;
+                }
+        
+                if (!keyword) {
+                    searchResultsContainer.innerHTML = `
+                        <div class="text-xs font-mono text-neutral-400 py-2">熱門搜尋建議</div>
+                        <div class="flex flex-wrap gap-2 pb-2">
+                            <button onclick="executeQuickSearch('隱私權政策')" class="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-xs text-neutral-300 transition">隱私權政策</button>
+                            <button onclick="executeQuickSearch('使用條款')" class="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-xs text-neutral-300 transition">使用條款</button>
+                            <button onclick="executeQuickSearch('法律聲明')" class="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-xs text-neutral-300 transition">法律聲明</button>
+                            <button onclick="executeQuickSearch('最新動態')" class="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-xs text-neutral-300 transition">FRX 最新動態</button>
+                            <button onclick="executeQuickSearch('點擊戰')" class="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-xs text-neutral-300 transition">FR 100 點擊戰</button>
+                        </div>
+                    `;
+                    return;
+                }
+
+                const matched = searchIndex.filter(item => 
+                    item.title.toLowerCase().includes(keyword) || item.snippet.toLowerCase().includes(keyword)
+                );
+
+                if (matched.length === 0) {
+                    searchResultsContainer.innerHTML = `
+                        <div class="text-center py-10 text-neutral-400 text-sm font-mono">
+                            沒有找到與 「<span class="text-amber-400">${escapeHtml(keyword)}</span>」 相關的內容
+                        </div>
+                    `;
+                    return;
+                }
+
+                let htmlContent = `<div class="text-xs font-mono text-amber-400 mb-2">找到 ${matched.length} 筆符合的結果</div><div class="space-y-2.5">`;
+                
+                matched.forEach(item => {
+                    const highlightedTitle = highlightKeyword(item.title, keyword);
+                    const highlightedSnippet = highlightKeyword(item.snippet, keyword);
+                    
+                    htmlContent += `
+                        <div onclick="switchPage('${item.pageId}', true); toggleSearchModal();" class="glass-card rounded-2xl p-4 cursor-pointer hover:border-amber-400 transition duration-300 group">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="text-sm font-bold text-white group-hover:text-amber-300 transition">${highlightedTitle}</span>
+                                <span class="text-[10px] font-mono text-amber-400 uppercase bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/20">前往查看 &rarr;</span>
+                            </div>
+                            <p class="text-xs text-neutral-300 line-clamp-2 leading-relaxed">${highlightedSnippet}</p>
+                        </div>
+                    `;
+                });
+
+                htmlContent += `</div>`;
+                searchResultsContainer.innerHTML = htmlContent;
+            });
+        }
+
+        function executeQuickSearch(query) {
+            if (searchInputEl) {
+                searchInputEl.value = query;
+                searchInputEl.dispatchEvent(new Event('input'));
+            }
+        }
+
+        function highlightKeyword(text, keyword) {
+            if (!keyword) return text;
+            const regex = new RegExp(`(${escapeRegExp(keyword)})`, 'gi');
+            return text.replace(regex, '<span class="search-highlight">$1</span>');
+        }
+
+        function escapeRegExp(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        function escapeHtml(string) {
+            return string.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+
+        function switchPage(pageId, updateHistory = true) {
+            document.querySelectorAll('.page-content').forEach(p => {
+                p.classList.remove('active');
+                gsap.to(p, { opacity: 0, y: 20, duration: 0.3, overwrite: true });
+            });
+            
+            let target = document.getElementById('page-' + pageId);
+            if (!target) {
+                target = document.getElementById('page-home');
+                pageId = 'home';
+            }
+            target.classList.add('active');
+
+            gsap.fromTo(target, 
+                { opacity: 0, y: 30, scale: 0.99 }, 
+                { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "power3.out", overwrite: true }
+            );
+
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+            requestAnimationFrame(() => {
+                window.scrollTo(0, 0);
+            });
+
+            if (updateHistory) {
+                const newUrl = pageId === 'home' ? window.location.pathname : `#${pageId}`;
+                history.pushState({ page: pageId }, '', newUrl);
+            }
+        }
+
+        window.addEventListener('popstate', (e) => {
+            const hash = window.location.hash.replace('#', '') || 'home';
+            switchPage(hash, false);
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash) {
+                switchPage(hash, false);
+            }
+            initGsapAnimations();
+            checkCookieConsent();
+        });
+
+        function toggleSearchModal() {
+            const modal = document.getElementById('search-modal');
+            modal.classList.toggle('hidden');
+            modal.classList.toggle('flex');
+            if (!modal.classList.contains('hidden')) {
+                gsap.fromTo(modal.querySelector('.glass-card'), { scale: 0.9, opacity: 0, y: -20 }, { scale: 1, opacity: 1, y: 0, duration: 0.4, ease: "power3.out" });
+                setTimeout(() => {
+                    const input = document.getElementById('site-search-input');
+                    if (input) {
+                        input.focus();
+                        input.select();
+                    }
+                }, 50);
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+            if (!menu.classList.contains('hidden')) {
+                gsap.fromTo(menu.children, { y: -20, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.05, duration: 0.4, ease: "power3.out" });
+            }
+        }
+
+        function initHomeCanvas() {
+            const canvas = document.getElementById('homeUniverseCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let pts = [];
+
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            for (let i = 0; i < 85; i++) {
+                pts.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    r: Math.random() * 2.2 + 0.8,
+                    vx: (Math.random() - 0.5) * 0.3,
+                    vy: (Math.random() - 0.5) * 0.3
+                });
+            }
+
+            function loop() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                pts.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                    ctx.fillStyle = 'rgba(255, 183, 77, 0.4)';
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+                requestAnimationFrame(loop);
+            }
+            loop();
+        }
+
+        function initCountdown() {
+            const targetDate = new Date("2030-01-01T18:00:00").getTime();
+            const daysEl = document.getElementById("cd-days");
+            const hoursEl = document.getElementById("cd-hours");
+            const minutesEl = document.getElementById("cd-minutes");
+            const secondsEl = document.getElementById("cd-seconds");
+
+            if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+
+            function updateTimer() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                if (distance < 0) {
+                    daysEl.innerText = "000";
+                    hoursEl.innerText = "00";
+                    minutesEl.innerText = "00";
+                    secondsEl.innerText = "00";
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                daysEl.innerText = String(days).padStart(3, '0');
+                hoursEl.innerText = String(hours).padStart(2, '0');
+                minutesEl.innerText = String(minutes).padStart(2, '0');
+                secondsEl.innerText = String(seconds).padStart(2, '0');
+            }
+
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        }
+
+        function initGsapAnimations() {
+            gsap.registerPlugin(ScrollTrigger);
+            if (isMobileDevice()) return;
+
+            document.querySelectorAll('.glass-card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    if (isMobileDevice()) return;
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const xc = rect.width / 2;
+                    const yc = rect.height / 2;
+                    const dx = (x - xc) / 16;
+                    const dy = (yc - y) / 16;
+
+                    gsap.to(card, {
+                        rotationY: dx,
+                        rotationX: dy,
+                        transformPerspective: 1200,
+                        duration: 0.4,
+                        ease: "power2.out"
+                    });
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    if (isMobileDevice()) return;
+                    gsap.to(card, {
+                        rotationY: 0,
+                        rotationX: 0,
+                        duration: 0.8,
+                        ease: "elastic.out(1, 0.4)"
+                    });
+                });
+            });
+        }
+
+        window.onload = function() {
+            initHomeCanvas();
+            initCountdown();
+            initGsapAnimations();
+            lucide.createIcons();
+        };
+    </script>
+</body>
+</html>
